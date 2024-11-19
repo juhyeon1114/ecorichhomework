@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ecorichhomework
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hr
+    username: root
+    password: 1234
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+  flyway:
+    enabled: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type: trace
