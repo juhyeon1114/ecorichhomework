@@ -26,3 +26,5 @@ logging:
       hibernate:
         SQL: debug
         type: trace
+server:
+  port: 5000
