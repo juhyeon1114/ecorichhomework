@@ -1,0 +1,45 @@
+name: Deploying
+run-name: Deploying
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  DeployingApp:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: 현재 날짜/시간 계산
+        id: date
+        run: echo "NOW=$(date +'%Y%m%d_%H%M')" >> $GITHUB_ENV
+      - name: 브랜치 이동
+        uses: actions/checkout@v3
+      - name: JDK 설치
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+      - name: AWS credential 설정
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ap-northeast-2
+          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.CICD_SECRET_KEY }}
+      - name: gradlew에 실행 권한 부여
+        run: chmod +x ./gradlew
+      - name: Clean
+        run: ./gradlew clean
+      - name: 프로젝트 빌드
+        run: ./gradlew build -x test --info
+      - name: 배포 패키지 생성
+        run: zip -r deploy.zip . -x '*.git*'
+      - name: EB로 배포
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.CICD_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.CICD_SECRET_KEY }}
+          application_name: eco
+          environment_name: eco-dev
+          version_label:  ${{ env.NOW }}
+          region: ap-northeast-2
+          deployment_package: deploy.zip
+          wait_for_deployment: false
