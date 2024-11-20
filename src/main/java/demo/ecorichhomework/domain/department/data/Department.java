@@ -13,7 +13,7 @@ public class Department {
     @Id
     private Integer departmentId;
     private String departmentName;
-    private Integer managerId; // todo
-    private Integer locationId; // todo
+    private Integer managerId;
+    private Integer locationId;
 
 }

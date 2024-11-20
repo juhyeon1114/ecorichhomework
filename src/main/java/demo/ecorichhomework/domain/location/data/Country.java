@@ -15,6 +15,6 @@ public class Country {
     @Column(columnDefinition = "CHAR(2)")
     private String countryId;
     private String countryName;
-    private Integer regionId; // todo
+    private Integer regionId;
 
 }
