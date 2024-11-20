@@ -1,5 +1,6 @@
 package demo.ecorichhomework.domain.job.data;
 
+import demo.ecorichhomework.domain.job.data.dto.SalaryLimitDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -16,5 +17,9 @@ public class Job {
     private String jobTitle;
     private BigDecimal minSalary;
     private BigDecimal maxSalary;
+
+    public SalaryLimitDto getSalaryLimit() {
+        return new SalaryLimitDto(minSalary, maxSalary);
+    }
 
 }
