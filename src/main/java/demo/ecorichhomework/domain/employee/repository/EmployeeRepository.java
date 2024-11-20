@@ -2,6 +2,7 @@ package demo.ecorichhomework.domain.employee.repository;
 
 import demo.ecorichhomework.domain.employee.data.Employee;
 import demo.ecorichhomework.global.exception.exceptions.ItemNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeRepository {
@@ -17,5 +18,7 @@ public interface EmployeeRepository {
                 () -> new ItemNotFoundException(message)
         );
     }
+
+    List<Employee> findAllEmployeesOfDepartment(Integer departmentId);
 
 }

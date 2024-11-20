@@ -1,4 +1,4 @@
-package demo.ecorichhomework.domain.employee.repository;
+package demo.ecorichhomework.domain.employee.repository.impl;
 
 import static demo.ecorichhomework.domain.department.data.QDepartment.department;
 import static demo.ecorichhomework.domain.employee.data.QJobHistory.jobHistory;
@@ -8,6 +8,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import demo.ecorichhomework.domain.employee.data.dto.JobHistoryResponse;
+import demo.ecorichhomework.domain.employee.repository.JobHistoryRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

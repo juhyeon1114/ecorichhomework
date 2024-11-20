@@ -1,5 +1,6 @@
 package demo.ecorichhomework.domain.employee.controller;
 
+import demo.ecorichhomework.domain.department.data.dto.DepartmentUpdateSalaryRequest;
 import demo.ecorichhomework.domain.employee.data.dto.EmployeeDetailResponse;
 import demo.ecorichhomework.domain.employee.data.dto.EmployeeUpdateRequest;
 import demo.ecorichhomework.domain.employee.data.dto.JobHistoryResponse;
@@ -51,6 +52,14 @@ public class EmployeeController {
     ) {
         employeeService.updateEmployee(employeeId, request);
         return employeeId;
+    }
+
+    @PutMapping("/department/{departmentId}/update-salary")
+    public void updateSalary(
+            @Parameter(description = "부서 id") @PathVariable("departmentId") Integer departmentId,
+            @RequestBody DepartmentUpdateSalaryRequest request
+    ) {
+        employeeService.updateSalaryOfDepartment(departmentId, request);
     }
 
 }

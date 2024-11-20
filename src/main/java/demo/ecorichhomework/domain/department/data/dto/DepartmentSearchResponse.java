@@ -1,4 +1,4 @@
-package demo.ecorichhomework.domain.department.controller.dto;
+package demo.ecorichhomework.domain.department.data.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
