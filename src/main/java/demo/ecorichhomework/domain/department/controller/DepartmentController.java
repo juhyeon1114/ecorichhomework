@@ -7,6 +7,7 @@ import demo.ecorichhomework.global.dto.PaginationRequestParam;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.web.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class DepartmentController {
     )
     @GetMapping("/search")
     public PagedModel<DepartmentSearchResponse> searchDepartments(
-            @Parameter(description = "검색어") @RequestParam("keyword") String keyword,
+            @Parameter(description = "검색어") @RequestParam("keyword") @Size(min = 2, message = "검색어는 2글자 이상 입력해주세요.") String keyword,
             @Parameter(description = "페이지") @RequestParam(value = "page", defaultValue = "0") Integer page,
             @Parameter(description = "한 페이지당 크기") @RequestParam(value = "size", defaultValue = "10") Integer size
     ) {
