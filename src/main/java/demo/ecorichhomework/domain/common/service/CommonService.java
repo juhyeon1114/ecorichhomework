@@ -18,10 +18,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class CommonService {
 
-    private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
     private final String serviceKey = "yaR8Vg2NpB6ZdoyX%2BZTiFHRm%2B5sBTwpD5CGZzJ%2Fzdel4L1kXHPu7JzaRNFLXcqzSKRsRylKROfUAZ6xSeR%2Fwbw%3D%3D";
     private final String dataUrl = "https://apis.data.go.kr/1360000/BeachInfoservice/getTwBuoyBeach";
+    final ObjectMapper objectMapper = new ObjectMapper();
 
     public BeachTemperatureApiResponse getBeachTemperature(String beachNum) throws JsonProcessingException {
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
